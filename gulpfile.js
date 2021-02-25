@@ -10,19 +10,16 @@ const del = require('del');
 const pug = require('gulp-pug');
 const notify = require('gulp-notify');
 
-let gulp = require('gulp');
-let deploy = require('gulp-gh-pages');
+const ghPages = require('gh-pages');
+const path = require('path');
 
 /**
  * Push build to gh-pages
  */
-gulp.task('deploy', function () {
-    return gulp.src("./app/**/*")
-        .pipe(deploy({
-            remoteUrl: "https://github.com/DmitriySemenov91/dmitriysemenov91.github.io.git",
-            branch: "main"
-        }))
-});
+function deploy(cb) {
+    ghPages.publish(path.join(process.cwd(), './build'), cb);
+}
+exports.deploy = deploy;
 
 function styles() {
     return src(['node_modules/slick-carousel/slick/slick.scss',

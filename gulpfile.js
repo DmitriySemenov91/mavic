@@ -17,8 +17,11 @@ let deploy = require('gulp-gh-pages');
  * Push build to gh-pages
  */
 gulp.task('deploy', function () {
-    return gulp.src("./dist/**/*")
-        .pipe(deploy())
+    return gulp.src("./app/**/*")
+        .pipe(deploy({
+            remoteUrl: "https://dmitriysemenov91.github.io/mavic/",
+            branch: "main"
+        }))
 });
 
 function styles() {
